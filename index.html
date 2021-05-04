@@ -25,10 +25,19 @@
           <ul style="margin-top: 10px;">
             <li v-for="detail in details" style="margin: 5px 0px;">{{ detail }}</li>
           </ul>
-          <div v-for="variant in variants" :key="variant.variantId">
-            <p>{{ variant.variantColor }}</p>
+
+          <div v-for="variant in variants" :key="variant.variantId" style="display:inline-block; padding: 25px; font-weight: 600;">
+            <p @mouseover="updateProduct(variant.variantImage)">{{ variant.variantColor }}</p>
           </div>
           <a :href="link" target="_blank">Go to Website</a>
+
+          <button v-on:click="addToCart">Add to Cart</button>
+          
+          <button @click="removeFromCart">Remove from Cart</button>
+
+          <div class="cart">
+            <p>Cart({{cart}})</p>
+          </div>
         </div>
       </div>
     </div>
