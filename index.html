@@ -1,70 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Product App</title>
-  </head>
-  <body>
-    <div class="nav-bar"></div>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="style.css" />
+		<title>Product App</title>
+	</head>
+	<body>
+		<div class="nav-bar"></div>
 
-    <div id="app">
-      <div class="product">
-        <div class="product-image">
-          <img v-bind:src="image">
-        </div>
-        <div class="product-info">
-          <h1>{{ title }}</h1>
-          <span v-show="onSale" 
-                style="background-color: red; 
-                      color:white; 
-                      padding: 5px; 
-                      display: block; 
-                      text-align: center; 
-                      font-weight: 600;">
-                      On Sale!
-          </span>
-          <p v-if="inStock > 10" 
-            style="font-weight: 600;">
-            In Stock
-          </p>
-          <p v-else-if="inStock <= 10 && inStock > 0">
-            <strong>Almost sold out!</strong>
-          </p>
-          <p v-else 
-              style="color: red; 
-                     font-weight: 600;">
-                     Out of Stock
-          </p>
-          <p>{{ description }}</p>
-          <ul style="margin-top: 10px;">
-            <li v-for="detail in details" style="margin: 5px 0px;">{{ detail }}</li>
-          </ul>
+		<div id="app">
+			<product :premium="premium"></product>
+		</div>
 
-          <div v-for="(variant, index) in variants" 
-                :key="variant.variantId" 
-                class="color-box"
-                :style="{ backgroundColor: variant.variantColor }" 
-                @mouseover="updateProduct(index)">
-          </div>
-          <a :href="link" target="_blank">Go to Website</a>
-
-          <button v-on:click="addToCart" 
-                  :disabled="!inStock"
-                  :class="{ disabledButton: !inStock }">Add to Cart</button>
-          
-          <button @click="removeFromCart" style="background-color: pink;">Remove from Cart</button>
-
-          <div class="cart">
-            <p>Cart({{cart}})</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
-    <script src="main.js"></script>
-  </body>
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+		<script src="main.js"></script>
+	</body>
 </html>
