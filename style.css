@@ -65,3 +65,20 @@ button {
   margin: 0;
   padding: 0;
 }
+
+.color-box {
+  width: 40px;
+  height: 40px;
+  margin-top: 5px;
+  border: 1px solid black;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.disabledButton {
+  background-color: #d8d8d8;
+}
+
+.lineThrough {
+  text-decoration: line-through;
+}

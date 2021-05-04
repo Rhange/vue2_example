@@ -5,7 +5,7 @@ let app = new Vue({
     description: 'This socks is very popular.',
     image: './assets/white-socks.jpg',
     link: 'https://www.softwear.com.ng/product/white-socks',
-    inStock: true,
+    inStock: false,
     inventory: 100,
     onSale: true,
     details: ["80% cotton", "20% polyester", "Gender-neutral"],

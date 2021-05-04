@@ -17,23 +17,45 @@
         </div>
         <div class="product-info">
           <h1>{{ product }}</h1>
-          <span v-show="onSale" style="background-color: red; color: white; padding: 5px; display: block; text-align: center; font-weight: 600;">On Sale!</span>
-          <p v-if="inventory > 10" style="font-weight: 600;">In Stock</p>
-          <p v-else-if="inventory <= 10 && inventory > 0"><strong>Almost sold out!</strong></p>
-          <p v-else style="color: red; font-weight: 600;">Out of Stock</p>
+          <span v-show="onSale" 
+                style="background-color: red; 
+                      color:white; 
+                      padding: 5px; 
+                      display: block; 
+                      text-align: center; 
+                      font-weight: 600;">
+                      On Sale!
+          </span>
+          <p v-if="inventory > 10" 
+            style="font-weight: 600;"
+            :class="{ lineThrough: !inStock }">In Stock
+          </p>
+          <p v-else-if="inventory <= 10 && inventory > 0">
+            <strong>Almost sold out!</strong>
+          </p>
+          <p v-else 
+              style="color: red; 
+                     font-weight: 600;">
+                     Out of Stock
+          </p>
           <p>{{ description }}</p>
           <ul style="margin-top: 10px;">
             <li v-for="detail in details" style="margin: 5px 0px;">{{ detail }}</li>
           </ul>
 
-          <div v-for="variant in variants" :key="variant.variantId" style="display:inline-block; padding: 25px; font-weight: 600;">
-            <p @mouseover="updateProduct(variant.variantImage)">{{ variant.variantColor }}</p>
+          <div v-for="variant in variants" 
+                :key="variant.variantId" 
+                class="color-box"
+                :style="{ backgroundColor: variant.variantColor }" 
+                @mouseover="updateProduct(variant.variantImage)">
           </div>
           <a :href="link" target="_blank">Go to Website</a>
 
-          <button v-on:click="addToCart">Add to Cart</button>
+          <button v-on:click="addToCart" 
+                  :disabled="!inStock"
+                  :class="{ disabledButton: !inStock }">Add to Cart</button>
           
-          <button @click="removeFromCart">Remove from Cart</button>
+          <button @click="removeFromCart" style="background-color: pink;">Remove from Cart</button>
 
           <div class="cart">
             <p>Cart({{cart}})</p>
